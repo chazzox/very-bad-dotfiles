@@ -18,23 +18,30 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+Return exec terminal
+
+
+# custom bindings
+
 bindsym $mod+shift+r exec sh ~/.i3/restartAll.sh
-# custom modes
+
+bindsym $mod+t exec sh ~/.i3/disableTouch.sh
+bindsym $mod+shift+t exec sh ~/.i3/enableTouch.sh
+
 bindsym $mod+shift+w mode "$editConf"
-set $editConf (i)3 config, (p)olybar config, (c)ompton, (Return)
+
+# mode to view edit configs
+set $editConf (i)3 config, (p)olybar config, (c)ompton, (u)rxvt (Return)
 mode "$editConf" {
-    bindsym i exec code .i3/config, mode default
-    bindsym c exec code .i3/config, mode default
-    bindsym p exec code .config/polybar/config, mode default
+    bindsym i exec code ~/.i3/config, mode default
+    bindsym c exec code ~/.config/compton.conf, mode default
+    bindsym p exec code ~/.config/polybar/config, mode default
+    bindsym u exec code ~/.Xresources, mode default
     bindsym Return mode default
 }
 
@@ -47,7 +54,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+exec_always --nsh 
 exec polybar example
 exec compton -b
 
@@ -265,3 +272,8 @@ set_from_resource $term_color15    color15
 # Set inner/outer gaps
 gaps inner 14
 gaps outer -2
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
