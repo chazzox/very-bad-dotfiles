@@ -1,5 +1,5 @@
 # very-bad-dotfiles
-self descriptive really, maybe ill get the hang of it at some point
+smoke will appear in ur system if used
 
 
 
