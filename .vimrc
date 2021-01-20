@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lervag/vimtex'
 Plug 'airblade/vim-gitgutter/'
 Plug 'ryanoasis/vim-devicons'
 Plug 'rainglow/vim'
@@ -42,5 +44,3 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeIgnore = ['\.DAT$', '\.LOG1$', '\.LOG1$']
 let g:NERDTreeIgnore = ['^node_modules$']
-
-
