@@ -1,4 +1,6 @@
-set encoding=UTF-8
+set enc=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf8,prc
 " keybindings
 
 " Moving Tabs
@@ -15,7 +17,7 @@ if has("gui_running")
 	set guioptions -=T " hide toolbar
 	set guioptions -=r " hide right scrollbar
 	set guioptions -=L " hide left scrollbar
-	set guifont=FiraCode\ Nerd\ Font\ Mono:h12:cANSI " set editor font
+	set guifont=FiraMono\ NF\:h10:cANSI " set editor font
 	set lines=50 " set window height
 	set columns=180 " set window width
 	au GUIEnter * simalt ~x " maximise VIM window
@@ -57,13 +59,15 @@ set background=dark
 colorscheme tokyonight
 let g:airline_theme = "tokyonight"
 
+" Formatter
+autocmd BufWritePre,TextChanged,InsertLeave *.tsx Neoformat
 
 " configure airline
 let g:airline_powerline_fonts = 1
 
 " configure nerd tree
-let g:NERDTreeDirArrowExpandable = '?'
-let g:NERDTreeDirArrowCollapsible = '?'
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeWinSize=30
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -71,7 +75,7 @@ let NERDTreeIgnore = ['\.DAT$', '\.LOG1$', '\.LOG1$']
 let g:NERDTreeIgnore = ['^node_modules$']
 
 
-
+" COC SECTION
 
 " TextEdit might fail if hidden is not set.
 set hidden
