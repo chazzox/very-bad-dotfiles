@@ -7,17 +7,23 @@ set cursorline
 set autochdir
 set number
 set cursorline
-set relativenumber
-set notitle
 
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
+" configure vim title string
+set title
+set titlestring=VIM\ %F\ %{mode()} 
+
+" saving and closing 
+map <c-s> :w<CR>
+map <c-w> :wq<CR>
+
 " tab switching
-map tj :tabnext<CR>
-map tp :tabprev<CR>
+map tn :tabnext<CR>
+map tb :tabprev<CR>
 map td :tabclose<CR>
 
 " toggle nerdtree
@@ -47,17 +53,13 @@ nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 " specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline' |
 			\ Plug 'vim-airline/vim-airline-themes'
-Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-            \ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
-Plug 'dense-analysis/ale'
 Plug 'lervag/vimtex'
 Plug 'ap/vim-css-color'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " color theme and syntax highlighting
@@ -87,6 +89,6 @@ call airline#parts#define_accent('mode','none')
 
 " configure nerd tree
 let NERDTreeIgnore = ['\~$','\.pyc$','\*NTUSER*','\*ntuser*','\NTUSER.DAT','\ntuser.ini']
-autocmd VimEnter * silent NERDTree | wincmd p
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
