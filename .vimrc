@@ -20,6 +20,9 @@ map tj :tabnext<CR>
 map tp :tabprev<CR>
 map td :tabclose<CR>
 
+" toggle nerdtree
+map <f1> :NERDTreeToggle<CR>
+
 " buffer switching 
 map gn :bn<cr>
 map gb :bp<cr>
