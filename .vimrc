@@ -3,9 +3,12 @@ if (has('termguicolors'))
 endif
 
 set encoding=UTF-8
-set number
 set cursorline
 set autochdir
+set number
+set cursorline
+set relativenumber
+set notitle
 
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
