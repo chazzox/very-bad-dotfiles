@@ -15,10 +15,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
-" configure vim title string
-set title
-set titlestring=VIM\ %F\ %{mode()} 
-
 " tab switching
 map tj :tabnext<CR>
 map tp :tabprev<CR>
