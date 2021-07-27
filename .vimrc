@@ -7,6 +7,7 @@ set cursorline
 set autochdir
 set number
 set cursorline
+set mouse=a
 
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -48,18 +49,18 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 " use Ctrl + V for pasting from system clipboard
-nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+nmap <C-S-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
 " specify a directory for plugins
 call plug#begin('~/.vim/plugged')
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline' |
-			\ Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-Plug 'lervag/vimtex'
-Plug 'ap/vim-css-color'
-Plug 'vim-airline/vim-airline'
+	Plug 'ghifarit53/tokyonight-vim'
+	Plug 'preservim/nerdtree'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'tpope/vim-fugitive'
+	Plug 'lervag/vimtex'
+	Plug 'ap/vim-css-color'
+	Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " color theme and syntax highlighting
@@ -88,7 +89,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 call airline#parts#define_accent('mode','none')
 
 " configure nerd tree
-let NERDTreeIgnore = ['\~$','\.pyc$','\*NTUSER*','\*ntuser*','\NTUSER.DAT','\ntuser.ini']
+let NERDTreeIgnore = ['\~$','\.pyc$','\*NTUSER*','\*ntuser*','\NTUSER.DAT','\ntuser.ini','\node_modules']
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
