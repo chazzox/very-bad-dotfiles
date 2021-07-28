@@ -20,7 +20,14 @@ set titlestring=VIM\ %F\ %{mode()}
 
 " saving and closing 
 map <c-s> :w<CR>
-map <c-w> :wq<CR>
+func! QuitFile()
+  try
+	:wq
+  catch /.*/
+	:q!
+  endtry
+endfunc
+map <c-w> :call QuitFile()<CR>
 
 " tab switching
 map tn :tabnext<CR>
