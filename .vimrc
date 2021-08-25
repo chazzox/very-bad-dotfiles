@@ -68,6 +68,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'lervag/vimtex'
 	Plug 'ap/vim-css-color'
 	Plug 'vim-airline/vim-airline'
+	Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 " color theme and syntax highlighting
@@ -98,3 +99,4 @@ call airline#parts#define_accent('mode','none')
 " configure nerd tree
 let NERDTreeIgnore = ['\~$','\.pyc$','\*NTUSER*','\*ntuser*','\NTUSER.DAT','\ntuser.ini','\node_modules']
 autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
