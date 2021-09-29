@@ -5,4 +5,4 @@ end
 alias ls="ls -Ga"
 alias audio="ncpamixer"
 
-oh-my-posh --init --shell fish --config ~/.poshthemes/aliens.omp.json | source
+oh-my-posh --init --shell fish --config ~/.poshthemes/marcduiker.omp.json | source
