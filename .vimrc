@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ap/vim-css-color'
 	Plug 'vim-airline/vim-airline'
 	Plug 'mboughaba/i3config.vim'
+	Plug 'dag/vim-fish'
 call plug#end()
 
 " color theme and syntax highlighting
