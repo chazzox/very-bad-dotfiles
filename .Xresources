@@ -6,63 +6,18 @@ Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-XTerm*background:        #222D31
-XTerm*foreground:        #d8d8d8
-XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
 XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
-! general
-*foreground: #a9b1d6
-*background: #1a1b26
-*cursorColor: #a9b1d6
-
-! terminal padding color
-*borderColor: #1a1b26
-
-! black
-*color0: #1a1b26
-*color8: #4e5173
-
-! red
-*color1: #F7768E
-*color9: #F7768E
-
-! green
-*color2: #9ECE6A
-*color10: #9ECE6A
-
-! yellow
-*color3: #E0AF68
-*color11: #E0AF68
-
-! blue
-*color4: #7AA2F7
-*color12: #7AA2F7
-
-! magenta
-*color5: #9a7ecc
-*color13: #9a7ecc
-
-! cyan
-*color6: #4abaaf
-*color14: #4abaaf
-
-! white
-*color7: #acb0d0
-*color15: #acb0d0
 
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-! alternative font settings with 'terminus':
-URxvt.font:         xft:FiraCode Nerd Font Mono
+URxvt.font:         xft:FiraCode Nerd Font:size=12
  
 URxvt.depth:                      32
-URxvt.background:                 [100]#1a1b26
-URxvt*foreground:                 #a9b1d6
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
@@ -83,3 +38,27 @@ URxvt.keysym.Control-Up:          \033[1;5A
 URxvt.keysym.Shift-Control-Up:    \033[1;6A
 URxvt.keysym.Control-Down:        \033[1;5B
 URxvt.keysym.Shift-Control-Down:  \033[1;6B
+
+! TokyoNight colors for Xresources
+*background: #24283b
+*foreground: #c0caf5
+
+*color0: #1D202F
+*color1: #f7768e
+*color2: #9ece6a
+*color3: #e0af68
+*color4: #7aa2f7
+*color5: #bb9af7
+*color6: #7dcfff
+*color7: #a9b1d6
+
+*color8: #414868
+*color9: #f7768e
+*color10: #9ece6a
+*color11: #e0af68
+*color12: #7aa2f7
+*color13: #bb9af7
+*color14: #7dcfff
+*color15: #c0caf5
+ 
+

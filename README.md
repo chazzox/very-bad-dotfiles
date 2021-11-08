@@ -1,3 +1,5 @@
 # very-bad-dotfiles
-smoke will appear in ur system if used
+
+ - I use these files on a manjaro installation using the i3 comunity edition
+
 
