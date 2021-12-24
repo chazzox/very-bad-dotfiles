@@ -8,7 +8,7 @@ repos = [
 
 for folder in repos:
     if (not os.path.isdir(f'{folder}/.git')):
-        print(f'{folder} - not a git repository')
+        print(f'{folder} - Not a git repository')
         continue
 
     process = subprocess.Popen(f"cd {folder} && git pull", shell=True, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
