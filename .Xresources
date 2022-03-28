@@ -12,10 +12,10 @@ XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
 
-Xcursor.theme: xcursor-breeze
+Xcursor.theme: 					  xcursor-breeze
 Xcursor.size:                     0
 
-URxvt.font:         xft:FiraCode Nerd Font:size=12
+URxvt.font:         			  xft:FiraCode Nerd Font:size=12
  
 URxvt.depth:                      32
 URxvt*scrollBar:                  false

@@ -1,13 +1,9 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
+set -g EV3_HOME "~/lejos_ev3"
+alias ls  "exa --icons"
 
-alias ls="ls -Ga --color=auto"
-alias audio="ncpamixer"
 
-set -gx PAGER most
+oh-my-posh --init --shell fish --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/v(oh-my-posh --version)/themes/hotstick.minimal.omp.json | source
 
-oh-my-posh --init --shell fish --config ~/.poshthemes/patriksvensson.omp.json | source
 
 # TokyoNight Color Palette
 set -l foreground c0caf5
@@ -20,6 +16,7 @@ set -l green 9ece6a
 set -l purple 9d7cd8
 set -l cyan 7dcfff
 set -l pink bb9af7
+
 
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
@@ -42,5 +39,4 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
-
 
