@@ -1,17 +1,17 @@
 -- CHAZZOX NVIM CONFIG
 
 -- editor stuff
-vim.opt.encoding = "UTF-8" vim.opt.cursorline = true vim.opt.number = true
-vim.opt.mouse = "a" vim.opt.scrolloff = 12
-
--- 4 character width tabs
-vim.opt.tabstop = 4 vim.opt.shiftwidth = 2
-
--- word wrap
-vim.opt.textwidth = 80 vim.opt.wrapmargin = 2
-
--- no annoying backup files
-vim.opt.backup = false vim.opt.writebackup = false
+vim.opt.encoding = "UTF-8" 
+vim.opt.cursorline = true 
+vim.opt.number = true
+vim.opt.mouse = "a" 
+vim.opt.scrolloff = 12
+vim.opt.tabstop = 4 
+vim.opt.shiftwidth = 2 -- 4 character width tabs
+vim.opt.textwidth = 80 
+vim.opt.wrapmargin = 2 -- word wrap
+vim.opt.backup = false 
+vim.opt.writebackup = false -- no annoying backup files
 
 -- auto check for file updates every time the window is entered/focused
 vim.cmd [[ au WinEnter, TabEnter, FocusGained * checktime ]]
@@ -38,15 +38,23 @@ require('packer').startup(function()
   use 'dag/vim-fish' -- Fish syntax 
   use 'mboughaba/i3config.vim'-- i3 config support 
   use 'sheerun/vim-polyglot' -- Syntax highlighting lang pack 
+  use 'lervag/vimtex' -- latex compilation
+
+  use 'github/copilot.vim' -- copilot
 end)
 
 -- Theme Configuration
-vim.o.termguicolors = true vim.g.tokoyonight_style = "storm"
+vim.o.termguicolors = true 
+vim.g.tokoyonight_style = "storm"
 vim.cmd [[colorscheme tokyonight]]
 
+-- vimtex
+vim.g.vimtex_view_general_viewer = "zathura"
+-- vim.g.vimtex_compiler_latexmk.options = ["-shell-escape"]
 
 -- i3 config detection
-vim.cmd [[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
+vim.cmd[[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
+
 
 -- future api:
 --[[
