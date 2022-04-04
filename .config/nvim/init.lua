@@ -20,24 +20,31 @@ vim.cmd [[ au WinEnter, TabEnter, FocusGained * checktime ]]
 -- "FocusGained"}, {pattern = "*", callback = checktime })
 
 -- spell check
-vim.wo.spell = true vim.opt.spelllang = {"nl", "en_us"}
+vim.wo.spell = true 
+vim.opt.spelllang = {"nl", "en_us"}
 
 -- configure title string
-vim.opt.title = true vim.opt.titlestring = "%F"
+vim.opt.title = true 
+vim.opt.titlestring = "%F"
 
 -- plugins
-vim.cmd [[packadd packer.nvim]] 
-
 local use = require('packer').use
 require('packer').startup(function() 
-  use 'wbthomason/packer.nvim' -- Package manager
-  use 'folke/tokyonight.nvim' -- Theme
-  use 'andweeb/presence.nvim' -- Discord Rich Presence 
+  use 'wbthomason/packer.nvim' -- package manager
+  use 'folke/tokyonight.nvim' -- theme
+  use 'andweeb/presence.nvim' -- discord Rich Presence 
+  
+  -- status line
+  use { 'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- highlight colors in files
 
   -- Languages
-  use 'dag/vim-fish' -- Fish syntax 
-  use 'mboughaba/i3config.vim'-- i3 config support 
-  use 'sheerun/vim-polyglot' -- Syntax highlighting lang pack 
+  use 'dag/vim-fish' -- fish syntax 
+  use 'mboughaba/i3config.vim' -- i3 config support 
+  use 'sheerun/vim-polyglot' -- syntax highlighting lang pack 
   use 'lervag/vimtex' -- latex compilation
 
   use 'github/copilot.vim' -- copilot
@@ -46,15 +53,20 @@ end)
 -- Theme Configuration
 vim.o.termguicolors = true 
 vim.g.tokoyonight_style = "storm"
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[ colorscheme tokyonight ]]
 
 -- vimtex
 vim.g.vimtex_view_general_viewer = "zathura"
--- vim.g.vimtex_compiler_latexmk.options = ["-shell-escape"]
+vim.g.vimtex_compiler_latexmk = {options = {'-shell-escape'}} -- enabling the syntax highlighting module
 
 -- i3 config detection
-vim.cmd[[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
+vim.cmd [[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
 
+-- status line config
+require('lualine').setup({options = { theme = 'tokyonight' }})
+
+-- highlight colors :)
+vim.g.Hexokinase_highlighters = {'foregroundfull'}
 
 -- future api:
 --[[
