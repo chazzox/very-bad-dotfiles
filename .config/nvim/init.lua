@@ -31,20 +31,17 @@ vim.opt.titlestring = "%F"
 local use = require('packer').use
 require('packer').startup(function() 
   use 'wbthomason/packer.nvim' -- package manager
+
+  -- editor 
   use 'folke/tokyonight.nvim' -- theme
   use 'andweeb/presence.nvim' -- discord Rich Presence 
-  
-  -- status line
-  use { 'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-
-  use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- highlight colors in files
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } } -- status line
+  use {'rrethy/vim-hexokinase', run ='make hexokinase'} -- highlight colors in files
 
   -- languages
+  use { 'nvim-treesitter/nvim-treesitter', run=':TSUpdate' }
   use 'dag/vim-fish' -- fish syntax 
   use 'mboughaba/i3config.vim' -- i3 config support 
-  use 'sheerun/vim-polyglot' -- syntax highlighting lang pack 
   use 'lervag/vimtex' -- latex compilation
 
   -- ai autocompletion
@@ -52,7 +49,12 @@ require('packer').startup(function()
 end)
 
 -- status line config
-require('lualine').setup({options = { theme = 'tokyonight' }})
+require('lualine').setup {options = { theme = 'tokyonight' }}
+
+-- treesitter config
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true, additional_vim_regex_highlighting = false}
+}
 
 -- Theme Configuration
 vim.o.termguicolors = true 
