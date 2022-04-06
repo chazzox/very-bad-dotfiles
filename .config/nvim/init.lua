@@ -41,14 +41,18 @@ require('packer').startup(function()
 
   use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- highlight colors in files
 
-  -- Languages
+  -- languages
   use 'dag/vim-fish' -- fish syntax 
   use 'mboughaba/i3config.vim' -- i3 config support 
   use 'sheerun/vim-polyglot' -- syntax highlighting lang pack 
   use 'lervag/vimtex' -- latex compilation
 
+  -- ai autocompletion
   use 'github/copilot.vim' -- copilot
 end)
+
+-- status line config
+require('lualine').setup({options = { theme = 'tokyonight' }})
 
 -- Theme Configuration
 vim.o.termguicolors = true 
@@ -61,9 +65,6 @@ vim.g.vimtex_compiler_latexmk = {options = {'-shell-escape'}} -- enabling the sy
 
 -- i3 config detection
 vim.cmd [[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
-
--- status line config
-require('lualine').setup({options = { theme = 'tokyonight' }})
 
 -- highlight colors :)
 vim.g.Hexokinase_highlighters = {'foregroundfull'}
