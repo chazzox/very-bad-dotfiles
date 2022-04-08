@@ -1,22 +1,19 @@
 import os
-import subprocess
+from git import Repo, InvalidGitRepositoryError
 
-repos = [
-    i for i in os.listdir(".") if os.path.isdir(i)
-]
+folders = [i for i in os.listdir(".") if os.path.isdir(i)]
 
+for repo in folders:
+    print("\nInspecting folder: %s" % repo)
+    try:
+        temp_repo = Repo(repo)
+        if temp_repo.is_dirty():
+            untracked = temp_repo.untracked_files
+            print("%s contains untracked files, cannot update" % repo )
+            continue
+        
+        print("Pulling...")
+        print(temp_repo.remotes.origin.pull())
 
-for folder in repos:
-    if (not os.path.isdir(f'{folder}/.git')):
-        print(f'{folder} - Not a git repository')
-        continue
-
-    process = subprocess.Popen(f"cd {folder} && git pull", shell=True, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-    output = process.stdout.read()
-
-    if output == b'Already up to date.\n':
-        print(f'{folder} - Already up to date!')
-    elif b'file changed' in output:
-        print(f'{folder} - Updated!')
-    else:
-        print(f'{folder} - Something Failed!')
+    except InvalidGitRepositoryError:
+        print("Error: %s is not a git repository" % repo)
