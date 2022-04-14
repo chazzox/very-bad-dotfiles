@@ -1,5 +1,30 @@
 -- CHAZZOX NVIM CONFIG
 
+-- plugins
+require('packer').startup(function(use) 
+  use 'wbthomason/packer.nvim' -- package manager
+
+  -- editor 
+  use 'folke/tokyonight.nvim' -- theme
+  use 'andweeb/presence.nvim' -- discord Rich Presence 
+  use {'nvim-lualine/lualine.nvim', 
+	requires = { 'kyazdani42/nvim-web-devicons', opt = true } -- status line
+  } 
+  use {'rrethy/vim-hexokinase', run ='make hexokinase', opt=true} -- highlight colors in files
+
+  -- languages
+  use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate' } --syntax highlighting
+  use {'dag/vim-fish', opt=true} -- fish syntax 
+  use {'mboughaba/i3config.vim', opt=true} -- i3 config support 
+  use {'lervag/vimtex', opt=true} -- latex compilation
+  use {"ellisonleao/glow.nvim", opt=true} -- markdown preview
+
+  use 'lewis6991/impatient.nvim' -- speedy load times
+end)
+
+--enabling speedy
+require('impatient').enable_profile()
+
 -- editor stuff
 vim.opt.encoding = "UTF-8" 
 vim.opt.cursorline = true 
@@ -16,7 +41,8 @@ vim.opt.writebackup = false -- no annoying backup files
 -- auto check for file updates every time the window is entered/focused
 vim.cmd [[ au WinEnter, TabEnter, FocusGained * checktime ]]
 
--- future api: vim.api.nvim_create_autocmd({"WinEnter", "TabEnter",
+-- future api: 
+-- vim.api.nvim_create_autocmd({"WinEnter", "TabEnter",
 -- "FocusGained"}, {pattern = "*", callback = checktime })
 
 -- spell check
@@ -26,33 +52,11 @@ vim.opt.spelllang = {"nl", "en_us"}
 -- configure title string
 vim.opt.title = true 
 vim.opt.titlestring = "%F"
-
--- plugins
-local use = require('packer').use
-require('packer').startup(function() 
-  use 'wbthomason/packer.nvim' -- package manager
-
-  -- editor 
-  use 'folke/tokyonight.nvim' -- theme
-  use 'andweeb/presence.nvim' -- discord Rich Presence 
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } } -- status line
-  use {'rrethy/vim-hexokinase', run ='make hexokinase'} -- highlight colors in files
-
-  -- languages
-  use { 'nvim-treesitter/nvim-treesitter', run=':TSUpdate' }
-  use 'dag/vim-fish' -- fish syntax 
-  use 'mboughaba/i3config.vim' -- i3 config support 
-  use 'lervag/vimtex' -- latex compilation
-
-  -- ai autocompletion
-  use 'github/copilot.vim' -- copilot
-end)
-
 -- status line config
 require('lualine').setup {options = { theme = 'tokyonight' }}
 
 -- treesitter config
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   highlight = { enable = true, additional_vim_regex_highlighting = false}
 }
 
@@ -63,7 +67,7 @@ vim.cmd [[ colorscheme tokyonight ]]
 
 -- vimtex
 vim.g.vimtex_view_general_viewer = "zathura"
-vim.g.vimtex_compiler_latexmk = {options = {'-shell-escape'}} -- enabling the syntax highlighting module
+vim.g.vimtex_compiler_latexmk = {options = {'-shell-escape'}} -- enabling the syntax highlighting
 
 -- i3 config detection
 vim.cmd [[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
@@ -77,4 +81,3 @@ local set_i3_filetype = function() vim.opt.filetype = "i3config"
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, { pattern =
     "~/.config/i3/config", callback = set_i3_filetype })
 --]]
-
