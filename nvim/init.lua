@@ -1,4 +1,10 @@
 -- CHAZZOX NVIM CONFIG
+local count = 0
+function test()
+	count = count + 1
+	vim.api.nvim_command("echo " .. count)
+end
+vim.api.nvim_create_autocmd("FocusGained", {callback=test})
 
 -- plugins
 require('packer').startup(function(use) 
@@ -10,15 +16,18 @@ require('packer').startup(function(use)
   use {'nvim-lualine/lualine.nvim', 
 	requires = { 'kyazdani42/nvim-web-devicons', opt = true } -- status line
   } 
-  use {'rrethy/vim-hexokinase', run ='make hexokinase', opt=true} -- highlight colors in files
+  use {'norcalli/nvim-colorizer.lua',
+	ft={'css', 'scss', 'typescript', 'javascript', 'html', 'svelte'}
+  } -- syntax highlighting
 
   -- languages
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate' } --syntax highlighting
-  use {'dag/vim-fish', opt=true} -- fish syntax 
-  use {'mboughaba/i3config.vim', opt=true} -- i3 config support 
-  use {'lervag/vimtex', opt=true} -- latex compilation
-  use {"ellisonleao/glow.nvim", opt=true} -- markdown preview
-
+  use 'dag/vim-fish' -- fish syntax 
+  use {'mboughaba/i3config.vim', ft="i3config"} -- i3 config support 
+  use {'lervag/vimtex', ft="tex"} -- latex compilation
+  use {"ellisonleao/glow.nvim", ft="markdown"} -- markdown preview
+  
+  use 'github/copilot.vim'
   use 'lewis6991/impatient.nvim' -- speedy load times
 end)
 
@@ -38,13 +47,6 @@ vim.opt.wrapmargin = 2 -- word wrap
 vim.opt.backup = false 
 vim.opt.writebackup = false -- no annoying backup files
 
--- auto check for file updates every time the window is entered/focused
-vim.cmd [[ au WinEnter, TabEnter, FocusGained * checktime ]]
-
--- future api: 
--- vim.api.nvim_create_autocmd({"WinEnter", "TabEnter",
--- "FocusGained"}, {pattern = "*", callback = checktime })
-
 -- spell check
 vim.wo.spell = true 
 vim.opt.spelllang = {"nl", "en_us"}
@@ -52,6 +54,15 @@ vim.opt.spelllang = {"nl", "en_us"}
 -- configure title string
 vim.opt.title = true 
 vim.opt.titlestring = "%F"
+
+
+-- PLUGINS 
+
+-- Theme Configuration
+vim.o.termguicolors = true 
+vim.g.tokoyonight_style = "storm"
+vim.cmd [[ colorscheme tokyonight ]]
+
 -- status line config
 require('lualine').setup {options = { theme = 'tokyonight' }}
 
@@ -60,24 +71,24 @@ require('nvim-treesitter.configs').setup {
   highlight = { enable = true, additional_vim_regex_highlighting = false}
 }
 
--- Theme Configuration
-vim.o.termguicolors = true 
-vim.g.tokoyonight_style = "storm"
-vim.cmd [[ colorscheme tokyonight ]]
+-- nvim colorizer
+require('colorizer').setup(nil, {mode='foreground'})
 
 -- vimtex
 vim.g.vimtex_view_general_viewer = "zathura"
 vim.g.vimtex_compiler_latexmk = {options = {'-shell-escape'}} -- enabling the syntax highlighting
 
+-- check for file updates every time the window is entered/focused
+vim.api.nvim_create_autocmd(
+  {"WinEnter", "TabEnter", "FocusGained"}, 
+  {pattern = "*", command = "checktime" }
+)
+
+
 -- i3 config detection
-vim.cmd [[ au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config ]]
+vim.api.nvim_create_autocmd(
+{"BufNewFile","BufRead"}, 
+  {pattern = "~/.config/i3/config",command = "set filetype=i3config"}
+)
 
--- highlight colors :)
-vim.g.Hexokinase_highlighters = {'foregroundfull'}
 
--- future api:
---[[
-local set_i3_filetype = function() vim.opt.filetype = "i3config"
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, { pattern =
-    "~/.config/i3/config", callback = set_i3_filetype })
---]]
