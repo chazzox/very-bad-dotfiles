@@ -16,9 +16,7 @@ require('packer').startup(function(use)
   use {'nvim-lualine/lualine.nvim', 
 	requires = { 'kyazdani42/nvim-web-devicons', opt = true } -- status line
   } 
-  use {'norcalli/nvim-colorizer.lua',
-	ft={'css', 'scss', 'typescript', 'javascript', 'html', 'svelte'}
-  } -- syntax highlighting
+  use {'rrethy/vim-hexokinase', ft={'css', 'html', 'typescript', 'svelte', 'javascript' ,'scss'}} -- color highlighting
 
   -- languages
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate' } --syntax highlighting
@@ -72,7 +70,7 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- nvim colorizer
-require('colorizer').setup(nil, {mode='foreground'})
+vim.g.Hexokinase_highlighters = {'foregroundfull'}
 
 -- vimtex
 vim.g.vimtex_view_general_viewer = "zathura"

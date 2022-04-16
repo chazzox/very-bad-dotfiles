@@ -38,6 +38,3 @@ font:
 
 key_bindings:
   - { key: N, mods: Command, action: CreateNewWindow }
-
-env:
-  TERM: xterm-256color
