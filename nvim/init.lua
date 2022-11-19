@@ -1,10 +1,4 @@
 -- CHAZZOX NVIM CONFIG
-local count = 0
-function test()
-	count = count + 1
-	vim.api.nvim_command("echo " .. count)
-end
-vim.api.nvim_create_autocmd("FocusGained", {callback=test})
 
 -- plugins
 require('packer').startup(function(use) 
@@ -16,10 +10,10 @@ require('packer').startup(function(use)
   use {'nvim-lualine/lualine.nvim', 
 	requires = { 'kyazdani42/nvim-web-devicons', opt = true } -- status line
   } 
-  use {'rrethy/vim-hexokinase', ft={'css', 'html', 'typescript', 'svelte', 'javascript' ,'scss'}} -- color highlighting
+  use 'rrethy/vim-hexokinase' -- color highlighting
 
   -- languages
-  use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate' } --syntax highlighting
+  -- use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate' } --syntax highlighting
   use 'dag/vim-fish' -- fish syntax 
   use {'mboughaba/i3config.vim', ft="i3config"} -- i3 config support 
   use {'lervag/vimtex', ft="tex"} -- latex compilation
@@ -33,6 +27,7 @@ end)
 require('impatient').enable_profile()
 
 -- editor stuff
+vim.o.termguicolors = true 
 vim.opt.encoding = "UTF-8" 
 vim.opt.cursorline = true 
 vim.opt.number = true
@@ -57,7 +52,6 @@ vim.opt.titlestring = "%F"
 -- PLUGINS 
 
 -- Theme Configuration
-vim.o.termguicolors = true 
 vim.g.tokoyonight_style = "storm"
 vim.cmd [[ colorscheme tokyonight ]]
 
@@ -65,9 +59,9 @@ vim.cmd [[ colorscheme tokyonight ]]
 require('lualine').setup {options = { theme = 'tokyonight' }}
 
 -- treesitter config
-require('nvim-treesitter.configs').setup {
-  highlight = { enable = true, additional_vim_regex_highlighting = false}
-}
+--require('nvim-treesitter.configs').setup {
+--  highlight = { enable = true, additional_vim_regex_highlighting = false}
+-- }
 
 -- nvim colorizer
 vim.g.Hexokinase_highlighters = {'foregroundfull'}
@@ -75,18 +69,4 @@ vim.g.Hexokinase_highlighters = {'foregroundfull'}
 -- vimtex
 vim.g.vimtex_view_general_viewer = "zathura"
 vim.g.vimtex_compiler_latexmk = {options = {'-shell-escape'}} -- enabling the syntax highlighting
-
--- check for file updates every time the window is entered/focused
-vim.api.nvim_create_autocmd(
-  {"WinEnter", "TabEnter", "FocusGained"}, 
-  {pattern = "*", command = "checktime" }
-)
-
-
--- i3 config detection
-vim.api.nvim_create_autocmd(
-{"BufNewFile","BufRead"}, 
-  {pattern = "~/.config/i3/config",command = "set filetype=i3config"}
-)
-
 

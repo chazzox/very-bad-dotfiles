@@ -1,5 +1,4 @@
 # very-bad-dotfiles
 
- - I use these files on a manjaro installation using the i3 comunity edition
-
-
+- they aren't perfect but they're mine. 
+- these are my dotfiles feel free to use lol
