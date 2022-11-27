@@ -1,0 +1,3 @@
+[submodule "alacritty-dracula"]
+	path = alacritty/theme
+	url = https://github.com/dracula/alacritty
