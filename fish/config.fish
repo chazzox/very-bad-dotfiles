@@ -12,7 +12,7 @@ if not set -q TMUX
 	ra
 end
 
-oh-my-posh --init --shell fish --config ~/aliens.omp.json | source
+oh-my-posh --init --shell fish --config ./theme.json | source
 
 # TokyoNight Color Palette
 set -l foreground c0caf5
