@@ -49,10 +49,11 @@ if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]
   echo '\ncreating config directory at ~/.config\n'
   mkdir -p ~/.config
   
-  echo '\ncreating tmux config at ~/.config/tmux\n'
-  mkdir -p ~/.config/tmux
-  cp ./tmux/tmux.conf ~/.config/tmux/
-  
+  echo '\ncreating tmux config at ~/.tmux.conf\n'
+  cp ./tmux/tmux.conf ~/.tmux.conf
+  echo 'installing tmux plugin manager\n'
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
   echo '\ncreating alacritty config at ~/.config/alacritty\n'
   mkdir -p ~/.config/alacritty
   cp ./alacritty/alacritty.yml ~/.config/alacritty
