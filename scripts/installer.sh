@@ -56,6 +56,10 @@ if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]
   echo '\ncreating alacritty config at ~/.config/alacritty\n'
   mkdir -p ~/.config/alacritty
   cp ./alacritty/alacritty.yml ~/.config/alacritty
+
+  echo '\ncreating fish config at ~/.config/fish\n'
+  mkdir -p ~/.config/fish
+  cp ./fish/config.fish ~/.config/fish/config.fish
 else 
   echo 'exiting...'
   exit 0
