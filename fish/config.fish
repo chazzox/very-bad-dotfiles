@@ -15,7 +15,7 @@ if not set -q TMUX
 	ra
 end
 
-oh-my-posh --init --shell fish --config ~/code/very-bad-dotfiles/theme.json | source
+oh-my-posh --init --shell fish --config $(brew --prefix oh-my-posh)/themes/bubblesextra.omp.json | source
 
 # pnpm
 set -gx PNPM_HOME "/Users/chazzox/Library/pnpm"
