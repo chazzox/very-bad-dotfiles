@@ -1,5 +1,6 @@
 import:
-  - ~/code/very-bad-dotfiles/alacritty/theme/dracula.yml
+  - ~/code/very-bad-dotfiles/alacritty/alacritty-theme/theme/gotham.yml
+background_color: #151515
 padding:
   x: 0
   y: 0
