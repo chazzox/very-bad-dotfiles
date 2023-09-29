@@ -12,6 +12,7 @@ require('packer').startup(function(use)
   -- use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate' } --syntax highlighting
   use 'dag/vim-fish' -- fish syntax 
   use {'mboughaba/i3config.vim', ft="i3config"} -- i3 config support 
+  use 'wuelnerdotexe/vim-astro'
   
   use 'lewis6991/impatient.nvim' -- speedy load times
 end)

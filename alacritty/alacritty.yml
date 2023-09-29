@@ -1,5 +1,5 @@
 import:
-  - ~/code/very-bad-dotfiles/alacritty/alacritty-theme/theme/gotham.yml
+  - ~/Documents/very-bad-dotfiles/alacritty/alacritty-theme/themes/gotham.yml
 background_color: #151515
 padding:
   x: 0
